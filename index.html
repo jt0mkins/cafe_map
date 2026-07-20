@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Joella's Cafe Map</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div id="sidebar">
+
+        <h1>☕ Cafe Rankings</h1>
+
+        <p>Christchurch & NZ Cafe Guide</p>
+
+        <div id="loadingMessage" class="loading-message">Loading cafe data…</div>
+
+        <hr>
+
+        <div class="stat">
+            <span>Visited</span>
+            <span id="visitedCount">0</span>
+        </div>
+
+        <div class="stat">
+            <span>Wishlist</span>
+            <span id="wishlistCount">0</span>
+        </div>
+
+        <div class="stat">
+            <span>Average Score</span>
+            <span id="averageScore">-</span>
+        </div>
+
+        <div class="filter-wrap">
+            <label for="cityFilter">Filter by city</label>
+            <select id="cityFilter">
+                <option value="all">All cities</option>
+            </select>
+        </div>
+
+        <div class="section-title">Top places</div>
+        <div id="cafeList" class="cafe-list"></div>
+
+    </div>
+
+    <div id="map"></div>
+
+    <aside id="detailPanel" class="detail-panel hidden" aria-hidden="true">
+        <button id="closeDetail" class="close-detail" aria-label="Close details">×</button>
+        <div id="detailContent"></div>
+    </aside>
+
+    <!-- Leaflet JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js">
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
