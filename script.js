@@ -19,9 +19,17 @@ const cityFilter = document.getElementById('cityFilter');
 const detailPanel = document.getElementById('detailPanel');
 const detailContent = document.getElementById('detailContent');
 const closeDetail = document.getElementById('closeDetail');
+const sidebarToggle = document.getElementById('sidebarToggle');
 
 let allCafes = [];
 const markerLayer = L.layerGroup().addTo(map);
+
+const toggleSidebar = () => {
+    const isOpen = document.body.classList.toggle('sidebar-open');
+    sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+};
+
+sidebarToggle.addEventListener('click', toggleSidebar);
 
 const toNumber = (value) => {
     if (value === undefined || value === null || value === '') {
@@ -144,6 +152,8 @@ const renderCafeList = (cafes) => {
             const selectedCafe = allCafes.find((cafe) => cafe.latitude === lat && cafe.longitude === lng);
 
             if (selectedCafe) {
+                document.body.classList.remove('sidebar-open');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
                 showDetailPanel(selectedCafe);
             }
         });
@@ -255,6 +265,14 @@ const loadCafeData = async () => {
             detailPanel.classList.add('hidden');
             detailPanel.setAttribute('aria-hidden', 'true');
         });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860) {
+                document.body.classList.remove('sidebar-open');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
         applyCityFilter();
     } catch (error) {
         console.error(error);

@@ -13,6 +13,10 @@ body {
         radial-gradient(circle at top left, #fff8ef 0%, #f6efe4 40%, #efe2d2 100%);
 }
 
+.sidebar-toggle {
+    display: none;
+}
+
 #sidebar {
     width: 340px;
     background: linear-gradient(180deg, #fffdf9 0%, #f7f0e6 100%);
@@ -21,6 +25,7 @@ body {
     z-index: 1000;
     overflow-y: auto;
     border-right: 1px solid rgba(92, 58, 33, 0.08);
+    transition: transform 0.22s ease;
 }
 
 #sidebar h1 {
@@ -160,6 +165,53 @@ hr {
 #map {
     flex: 1;
     min-height: 100vh;
+}
+
+@media (max-width: 860px) {
+    body {
+        position: relative;
+    }
+
+    .sidebar-toggle {
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 1300;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 999px;
+        background: #5c3a21;
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: bold;
+        box-shadow: 0 8px 20px rgba(92, 58, 33, 0.25);
+        cursor: pointer;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: min(86vw, 340px);
+        transform: translateX(-110%);
+        box-shadow: 12px 0 32px rgba(92, 58, 33, 0.24);
+    }
+
+    body.sidebar-open #sidebar {
+        transform: translateX(0);
+    }
+
+    body.sidebar-open .sidebar-toggle {
+        left: calc(min(86vw, 340px) + 14px);
+    }
+
+    #map {
+        width: 100vw;
+    }
 }
 
 .detail-panel {
