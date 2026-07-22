@@ -6,7 +6,10 @@ A static Leaflet-based cafe ranking map for New Zealand.
 - `index.html` – main page
 - `style.css` – styling
 - `script.js` – map and data rendering logic
-- `cafes.csv` – source spreadsheet export used by the page
+- Google Sheets CSV export – live data source used by the page
+
+## Data source
+The app loads cafe data directly from the published Google Sheet CSV export configured in `script.js`.
 
 ## Publish with GitHub Pages
 1. Create a GitHub repository for this folder.

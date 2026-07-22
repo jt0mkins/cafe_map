@@ -21,6 +21,8 @@ const detailContent = document.getElementById('detailContent');
 const closeDetail = document.getElementById('closeDetail');
 const sidebarToggle = document.getElementById('sidebarToggle');
 
+const CAFE_DATA_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTUPDsFPzYgBV3rX4fuAaGSnD6MHKkZAqSX8nytzqzDxjecbPp7N_hun9Qd4ZnO2atVu65AqIj3QTTr/pub?output=csv';
+
 let allCafes = [];
 const markerLayer = L.layerGroup().addTo(map);
 
@@ -219,10 +221,10 @@ const applyCityFilter = () => {
 
 const loadCafeData = async () => {
     try {
-        const response = await fetch('cafes.csv');
+        const response = await fetch(CAFE_DATA_URL);
 
         if (!response.ok) {
-            throw new Error(`Unable to fetch cafes.csv: ${response.status}`);
+            throw new Error(`Unable to fetch cafe data: ${response.status}`);
         }
 
         const csvText = await response.text();
@@ -276,7 +278,7 @@ const loadCafeData = async () => {
         applyCityFilter();
     } catch (error) {
         console.error(error);
-        loadingMessage.textContent = 'Unable to load spreadsheet data. Please start a local server and keep cafes.csv in the project root.';
+        loadingMessage.textContent = 'Unable to load spreadsheet data. Please make sure the Google Sheet is published to CSV and accessible from the browser.';
     }
 };
 
