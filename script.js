@@ -38,7 +38,18 @@ const toNumber = (value) => {
         return null;
     }
 
-    const cleaned = String(value).replace(/[^0-9.-]/g, '');
+    const raw = String(value).trim();
+
+    if (raw.startsWith('#')) {
+        return null;
+    }
+
+    const cleaned = raw.replace(/[^0-9.-]/g, '');
+
+    if (cleaned === '') {
+        return null;
+    }
+
     const parsed = Number(cleaned);
 
     return Number.isFinite(parsed) ? parsed : null;
